@@ -1,0 +1,63 @@
+@import url(http://fonts.googleapis.com/css?family=Raleway:400,700,900);
+ 
+body {
+  font-family: 'Lato', sans-serif;
+}
+.navbar {
+	min-height: 70px;
+	padding-top: 10px;
+	margin-bottom: 0px;
+}
+
+.navbar-brand {
+	font-family: 'Raleway', sans-serif;
+	font-weight: 900;
+}
+
+.navbar-header .navbar-brand {
+	color: white;
+}
+
+.navbar-default .navbar-nav > li > a {
+	color: white;
+	font-weight: 700;
+}
+
+.navbar-default .navbar-nav > li > a:hover {
+	color: #00BCD4;
+}
+
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
+	color: #00BCD4;
+	background-color: transparent;
+}
+
+.navbar-default {
+	background-color: #384452;
+	border-color: transparent;
+}
+
+.dropdown-menu {
+	background: #384452;
+}
+
+.dropdown-menu > li > a {
+	color: white;
+	font-weight: 700;
+	font-size: 13px;
+}
+.mtb {
+	margin-top: 90px;
+	margin-bottom: 80px;
+}
+.username > a{
+	background-color: transparent;
+	color: #384452;
+	text-decoration: underline;
+	font-size: 16px;
+	font-weight: 700;
+}
+.username > a:hover {
+	background-color: white;
+	color: #384452;
+}
