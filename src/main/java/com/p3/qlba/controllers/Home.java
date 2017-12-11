@@ -138,7 +138,7 @@ public class Home {
 		
 		session.setMaxInactiveInterval(900);// max thoi gian session la 900
 		session.setAttribute("bn", benhNhan);
-		response.sendRedirect(request.getContextPath() + "/benhnhan/home_benh_nhan.html");
+		response.sendRedirect(request.getContextPath() + "/benhnhan/trang_chu?action=TC");
 		return "benhnhan/BN";
 	}
 
