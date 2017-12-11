@@ -304,6 +304,7 @@ public class BacSiController {
 		return "bacsi/phac_do_dieu_tri";
 	}
 
+	// viet phac do
 	@RequestMapping(value = "/viet_phac_do", method = RequestMethod.POST)
 	public void vietPhacDo(HttpServletRequest request, HttpServletResponse response, ModelMap mm)
 			throws IOException, ParseException {
@@ -314,7 +315,6 @@ public class BacSiController {
 			String tieuDe = request.getParameter("tieuDe");
 			String thoiGian = request.getParameter("thoiGian");
 			String noiDung = request.getParameter("noiDung");
-			String ngayTao = request.getParameter("ngayTao");
 			String nhacNho = request.getParameter("nhacNho");
 			Boolean nhacNhoB = false;
 			// if (nhacNho.equals("Co")) {
@@ -322,14 +322,13 @@ public class BacSiController {
 			// }
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 			Date thoiGianD = sdf.parse(thoiGian);
-			Date ngayTaoD = sdf.parse(ngayTao);
 
 			PhacDoDieuTri phacDoDieuTri = new PhacDoDieuTri();
 			phacDoDieuTri.setMaBenhAn(Integer.parseInt(maBenhAn));
 			phacDoDieuTri.setTieuDe(tieuDe);
 			phacDoDieuTri.setThoiGian(thoiGianD);
 			phacDoDieuTri.setNoiDung(noiDung);
-			phacDoDieuTri.setNgayTao(ngayTaoD);
+			phacDoDieuTri.setNgayTao(new Date());
 			phacDoDieuTri.setNhacNho(0);
 			int result = phacDoDieuTriDAO.themPhacDoDieuTri(phacDoDieuTri);
 			HttpSession session = request.getSession(false);
@@ -338,7 +337,7 @@ public class BacSiController {
 			} else {
 				session.setAttribute("them_xoa_sua", "thatbai");
 			}
-			response.sendRedirect(request.getContextPath() + "/bacsi/home_bac_si?action=BA");
+			response.sendRedirect(request.getContextPath() + "/bacsi/lay_thong_tin_benh_an?id="+phacDoDieuTri.getMaBenhAn());
 		}
 
 	}
@@ -475,6 +474,7 @@ public class BacSiController {
 		return "bacsi/chan_doan";
 	}
 
+	//viet chan doan
 	@RequestMapping(value = "/viet_chan_doan", method = RequestMethod.POST)
 	public void vietChanDoan(HttpServletRequest request, HttpServletResponse response, ModelMap mm)
 			throws IOException, ParseException {
@@ -500,7 +500,7 @@ public class BacSiController {
 			} else {
 				session.setAttribute("them_xoa_sua", "thatbai");
 			}
-			response.sendRedirect(request.getContextPath() + "/bacsi/home_bac_si?action=BA");
+			response.sendRedirect(request.getContextPath() + "/bacsi/lay_thong_tin_benh_an?id="+chanDoan.getMaBenhAn());
 		}
 	}
 

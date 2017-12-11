@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/header.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/modal.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/patient.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/footer.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
@@ -30,8 +31,8 @@
             </div>
             <div class="navbar-collapse collapse navbar-right">
                 <ul class="nav navbar-nav">
-                    <li ><a href="${pageContext.request.contextPath}/benhnhan/trang_chu?action=TC">Trang chủ</a></li>
-                    <li class="active"><a href="${pageContext.request.contextPath}/benhnhan/trang_chu?action=BCSK">Báo cáo sức khỏe</a></li>
+                    <li class="active"><a href="${pageContext.request.contextPath}/benhnhan/trang_chu?action=TC">Trang chủ</a></li>
+                    <li ><a href="${pageContext.request.contextPath}/benhnhan/trang_chu?action=BCSK">Báo cáo sức khỏe</a></li>
                     <li><a href="${pageContext.request.contextPath}/benhnhan/trang_chu?action=BA">Bệnh án</a></li>
                     <li><a href="<%=request.getContextPath()%>/tuvan">Tư vấn sức khỏe</a></li>
                     <li class="username dropdown">
@@ -178,5 +179,37 @@
         </div>
     </div>
     <%} %>
+    <div id="footerwrap">
+	 	<div class="container">
+		 	<div class="row">
+		 		<div class="col-lg-4">
+		 			<h4>Về chúng tôi</h4>
+		 			<div class="hline-w"></div>
+		 			<p>Trang web quản lý bệnh án điện tử - Đề tài Project 3 đồ án Hệ thống thông tin</p>
+		 		</div>
+		 		<div class="col-lg-4">
+		 			<h4>Liên lạc</h4>
+		 			<div class="hline-w"></div>
+		 			<p>
+		 				<a href="#"><i class="fa fa-dribbble"></i></a>
+		 				<a href="#"><i class="fa fa-facebook"></i></a>
+		 				<a href="#"><i class="fa fa-twitter"></i></a>
+		 				<a href="#"><i class="fa fa-instagram"></i></a>
+		 				<a href="#"><i class="fa fa-tumblr"></i></a>
+		 			</p>
+		 		</div>
+		 		<div class="col-lg-4">
+		 			<h4>Địa chỉ</h4>
+		 			<div class="hline-w"></div>
+		 			<p>
+		 				Số 1<br/>
+		 				Đại Cồ Việt, Hà Nội<br/>
+		 				Đại học Bách Khoa Hà Nội<br/>
+		 			</p>
+		 		</div>
+		 	
+		 	</div>
+	 	</div>
+	 </div>
 </body>
 </html>

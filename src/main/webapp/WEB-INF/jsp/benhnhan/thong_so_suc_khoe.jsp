@@ -11,6 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/header.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/footer.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/modal.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/patient.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -57,23 +58,23 @@
                     <form action="<%=request.getContextPath()%>/benhnhan/them_thong_so_suc_khoe" method="POST" class="form" role="form">
                         <div class="col-xs-6 col-md-6">
                             <label>Mạch đập (số lần / phút): </label>
-                            <input class="form-control" name="mach"  type="number" min="0" max="100" required /> 
+                            <input class="form-control" name="mach" value="60" type="number" min="0" max="100" required /> 
                         </div>
                         <div class="col-xs-6 col-md-6">
                             <label>Nhiệt độ cơ thể (độ C): </label>
-                            <input class="form-control" name="nhietDo"  type="number" min="0" max="50" required/>
+                            <input class="form-control" name="nhietDo" value="37" type="number" min="0" max="50" required/>
                         </div>
                         <div class="col-xs-6 col-md-6">
                             <label>Huyết áp (mmHg): </label>
-                            <input class="form-control" name="huyetAp"  type="number" min="0" max="200" required/>
+                            <input class="form-control" name="huyetAp" value="80" type="number" min="0" max="200" required/>
                         </div>
                         <div class="col-xs-6 col-md-6">
                             <label>Nhịp thở (số lần /phút): </label>
-                            <input class="form-control" name="nhipTho"  type="number" min="0" max="100" required/>
+                            <input class="form-control" name="nhipTho" value="15" type="number" min="0" max="100" required/>
                         </div>
                         <div class="col-xs-6 col-md-6">
                             <label>Cân nặng (kg): </label>
-                            <input class="form-control" name="canNang"  type="number" min="0" max="400" step=".50" required/>
+                            <input class="form-control" name="canNang" value="40" type="number" min="0" max="400" required/>
                         </div>
                         
                         <button class="button button-block" type="submit">
@@ -199,6 +200,38 @@
             </div>
         </div>
     </div>
+   	<div id="footerwrap">
+	 	<div class="container">
+		 	<div class="row">
+		 		<div class="col-lg-4">
+		 			<h4>Về chúng tôi</h4>
+		 			<div class="hline-w"></div>
+		 			<p>Trang web quản lý bệnh án điện tử - Đề tài Project 3 đồ án Hệ thống thông tin</p>
+		 		</div>
+		 		<div class="col-lg-4">
+		 			<h4>Liên lạc</h4>
+		 			<div class="hline-w"></div>
+		 			<p>
+		 				<a href="#"><i class="fa fa-dribbble"></i></a>
+		 				<a href="#"><i class="fa fa-facebook"></i></a>
+		 				<a href="#"><i class="fa fa-twitter"></i></a>
+		 				<a href="#"><i class="fa fa-instagram"></i></a>
+		 				<a href="#"><i class="fa fa-tumblr"></i></a>
+		 			</p>
+		 		</div>
+		 		<div class="col-lg-4">
+		 			<h4>Địa chỉ</h4>
+		 			<div class="hline-w"></div>
+		 			<p>
+		 				Số 1<br/>
+		 				Đại Cồ Việt, Hà Nội<br/>
+		 				Đại học Bách Khoa Hà Nội<br/>
+		 			</p>
+		 		</div>
+		 	
+		 	</div>
+	 	</div>
+	 </div>
     <script src="${pageContext.request.contextPath}/resources/js/modal-add.js"></script>
     <script src="${pageContext.request.contextPath}/resources/js/search.js"></script>
 </body>

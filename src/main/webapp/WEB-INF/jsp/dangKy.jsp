@@ -41,17 +41,18 @@
                 <label>
                 Mật khẩu<span class="req">*</span>
                 </label>
-                <input name="matKhau" type="password"required autocomplete="off"/>
+                <input name="matKhau" type="password" id="password" required autocomplete="off"/>
             </div>
 
             <div class="field-wrap">
                 <label>
                 Xác nhận mật khẩu<span class="req">*</span>
                 </label>
-                <input name="matKhauXacNhan" type="password"required autocomplete="off"/>
+                <input name="matKhauXacNhan" type="password" id="confirm_password" required autocomplete="off"/>
+                <span id='message'></span>
             </div>
-
-            <button type="submit" class="button button-block"/>Tạo tài khoản</button>
+			
+            <button type="submit" class="button button-block" onclick="checkPW()"/>Tạo tài khoản</button>
 
         </form>
 
@@ -63,6 +64,7 @@
   <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 
   <script  src="${pageContext.request.contextPath}/resources/js/index.js"></script>
+  <script  src="${pageContext.request.contextPath}/resources/js/change-pwd.js"></script>
 
 </body>
 </html>

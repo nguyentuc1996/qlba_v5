@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/header.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/modal.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/footer.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/doctor.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/chat-advice.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -31,9 +32,9 @@
             </div>
             <div class="navbar-collapse collapse navbar-right">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="<%=request.getContextPath()%>/bacsi/home_bac_si">Trang chủ</a></li>
+                    <li ><a href="<%=request.getContextPath()%>/bacsi/home_bac_si">Trang chủ</a></li>
                     <li ><a href="<%=request.getContextPath()%>/bacsi/trang_chu?action=BA">Bệnh án</a></li>
-                    <li ><a href="<%=request.getContextPath()%>/bacsi/trang_chu?action=QLCC">Quản lý chứng chỉ</a></li>
+                    <li class="active"><a href="<%=request.getContextPath()%>/bacsi/trang_chu?action=QLCC">Quản lý chứng chỉ</a></li>
                     <li><a href="<%=request.getContextPath()%>/tuvan">Tư vấn sức khỏe</a></li>
                     <li class="username dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="hidden-xs">${bs.getTaiKhoan()}</span><b class="caret"></b></a>
@@ -47,52 +48,36 @@
         </div>
     </header>
     <div class="container mtb">
-    <div id="qlba_modal_update" class="modal">
+    	<div id="qlba-modal" class="modal">
             <div class="modal-content">
                 <div class="modal-header">
                     <span class="close" id="close-add">&times;</span>
-                    <h2>Thêm chứng chỉ</h2>
+                    <h2>Thêm chứng chỉ mới</h2>
                 </div>
                 <div class="modal-body">
-                    <div class="tab">
-                        <button class="tablinks" onclick="openField(event, 'benhAn')" id="defaultOpen">Bệnh án</button>
-<!--                         <button class="tablinks" onclick="openField(event, 'chanDoan')">Chẩn đoán bệnh</button> -->
-<!--                         <button class="tablinks" onclick="openField(event, 'phapDo')">Phác đồ điều trị</button> -->
-                    </div>
-
-                    <div id="benhAn" class="tabcontent">
-                        <form action="<%=request.getContextPath()%>/bacsi/them_chung_chi" method="POST" class="form" role="form">
-                            <div class="row">
+                    <form action="<%=request.getContextPath()%>/bacsi/them_chung_chi" method="POST" class="form" role="form">
+                        <input class="form-control" name="tenChungChi" placeholder="tên chứng chỉ " type="text" required/>
+                        <div class="row">
                             <div class="col-xs-6 col-md-6">
-                                    <label>Tên chứng chỉ:</label>
-                                    <input class="form-control" name="tenChungChi" >
-                                </div>
+                                <input class="form-control" name="ngayNhan" placeholder="Ngày nhận" type="date" required/>
                             </div>
-                            <label>Ngày nhận:</label>
-                            <input class="form-control" name="ngayNhan" placeholder="Ngày nhận" type="date" required />
-                            </br>
-                            <label>Ngày hết hạn:</label>
-                            <input class="form-control" name="ngayHetHan" placeholder="Ngày hết hạn" type="date" required />
-                            </br>
-                            <label>Mô tả:</label>
-                            <textarea class="form-control" name="moTa" placeholder="Khác" ></textarea>                               
-                            
-                            
-                            <button class="button button-block" type="submit">
-                                Thêm chứng chỉ</button>
+                            <div class="col-xs-6 col-md-6">
+                                <input class="form-control" name="ngayHetHan" placeholder="Ngày hết hạn" type="date"/>
+                            </div>
+                        </div>
+                        <textarea class="form-control" name="moTa" placeholder="Mô tả" required></textarea>
+                        <button class="button button-block" type="submit">
+                            Thêm</button>    
 
-                        </form>
-                    </div>
-
-                    
-
-
+                    </form>
                 </div>
                 <div class="modal-footer">
-
+                
                 </div>
+                
             </div>
-        </div>
+           </div>
+    
     <div class="row">
             <div class="col-lg-10 col-lg-offset-1 centered">
                 <div class="panel panel-default panel-table">
@@ -103,7 +88,7 @@
                                 <legend> Danh sách chứng chỉ bác sĩ</legend>
                             </div>
                             <div class="col-xs-6 col-md-6">
-                                <button class="button button-block" id="btn-modal-update">Thêm chứng chỉ</button>
+                                <button class="button button-block" id="btn-modal-add">Thêm chứng chỉ</button>
                             </div>
                            
                             <input type="text" id="search_text" onkeyup="search()" placeholder="Gõ mã chứng chỉ để tìm kiếm">  
@@ -139,6 +124,61 @@
                                     <td style="text-align:center;"><%=chungChi.getMoTa() %></td>
                                     <td style="text-align:center;">
                                         <a class="btn btn-danger" href="<%=request.getContextPath()%>/bacsi/xoa_chung_chi?maChungChi=<%=chungChi.getMaChungChi() %>"><em class="fa fa-trash"></em></a>
+                                        <a class="btn btn-primary" href="#qlcc_modal_update_<%=chungChi.getMaChungChi()%>" data-toggle="modal" data-backdrop="false">
+                                        <em class="fa fa-pencil"></em></a> <!--truyen gia tri id vao day qlba_modal_update_{}-->
+										<div style="text-align: left;"
+											id="qlcc_modal_update_<%=chungChi.getMaChungChi()%>"
+											class="modal fade" role="dialog"
+											aria-labelledby="myModalLabel" aria-hidden="true">
+
+											<div class="modal-content">
+												<div class="modal-header">
+													<span class="close" data-dismiss="modal">&times;</span>
+													<h2>Chứng chỉ xem chi tiết</h2>
+												</div>
+												
+												<div class="modal-body">
+                                                    <div class="row">
+                                                        <div class="col-md-6 well">
+                                                            <strong><i class="fa fa-book margin-r-5"></i>Thông tin chứng chỉ</strong>
+                                                            <br>
+                                                            <p class="text-muted">
+                                                                Tên chứng chỉ: <%=chungChi.getTenChungChi() %>
+                                                            </p>
+                                                            <p class="text-muted">
+                                                                Thời gian: <%= chungChi.getNgayNhan()%> - <%=chungChi.getNgayHetHan() %>
+                                                            </p>
+                                                            <p class="text-muted">
+                                                                Mô tả:
+                                                                <p><%= chungChi.getMoTa()%></p>
+                                                            </p>
+                                                            <a data-toggle="collapse" data-target="#update_ccbs_<%=chungChi.getMaChungChi()%>">Thay đổi thông tin chứng chỉ</a>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div id="update_ccbs_<%=chungChi.getMaChungChi() %>" class="collapse">
+                                                                <form action="<%=request.getContextPath()%>/bacsi/sua_chung_chi?maChungChi=<%=chungChi.getMaChungChi()%>" method="POST" class="form" role="form">
+                                                                    <input class="form-control" name="tenChungChi" value="<%=chungChi.getTenChungChi()%>" type="text" required/>
+                                                                    <div class="row">
+                                                                        <div class="col-xs-6 col-md-6">
+                                                                            <input class="form-control" name="ngayNhan" value="<%=chungChi.getNgayNhan()%>" type="date" required/>
+                                                                        </div>
+                                                                        <div class="col-xs-6 col-md-6">
+                                                                            <input class="form-control" name="ngayHetHan" value="<%=chungChi.getNgayHetHan()%>" type="date"/>
+                                                                        </div>
+                                                                    </div>
+                                                                    <textarea class="form-control" name="moTa" placeholder="Mô tả" required><%=chungChi.getMoTa()%></textarea>
+                                                                    <button class="button button-block" type="submit">
+                                                                        Thêm</button>    
+
+                                                                </form>
+                                                                </div>
+														</div>
+														
+											</div>
+											<div class="modal-footer"></div>
+										
+
+										</div></td>
                                     </td>
 									</tr>
                              <%}} %>  
@@ -152,8 +192,40 @@
             </div>
         </div>
     </div>
+    <div id="footerwrap">
+	 	<div class="container">
+		 	<div class="row">
+		 		<div class="col-lg-4">
+		 			<h4>Về chúng tôi</h4>
+		 			<div class="hline-w"></div>
+		 			<p>Trang web quản lý bệnh án điện tử - Đề tài Project 3 đồ án Hệ thống thông tin</p>
+		 		</div>
+		 		<div class="col-lg-4">
+		 			<h4>Liên lạc</h4>
+		 			<div class="hline-w"></div>
+		 			<p>
+		 				<a href="#"><i class="fa fa-dribbble"></i></a>
+		 				<a href="#"><i class="fa fa-facebook"></i></a>
+		 				<a href="#"><i class="fa fa-twitter"></i></a>
+		 				<a href="#"><i class="fa fa-instagram"></i></a>
+		 				<a href="#"><i class="fa fa-tumblr"></i></a>
+		 			</p>
+		 		</div>
+		 		<div class="col-lg-4">
+		 			<h4>Địa chỉ</h4>
+		 			<div class="hline-w"></div>
+		 			<p>
+		 				Số 1<br/>
+		 				Đại Cồ Việt, Hà Nội<br/>
+		 				Đại học Bách Khoa Hà Nội<br/>
+		 			</p>
+		 		</div>
+		 	
+		 	</div>
+	 	</div>
+	 </div>
     <script src="${pageContext.request.contextPath}/resources/js/pddt-update.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/js/modal-update.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/modal-add.js"></script>
     <script src="${pageContext.request.contextPath}/resources/js/search.js"></script>  
     <script src="${pageContext.request.contextPath}/resources/js/tab-daily-health.js"></script>
 </body>

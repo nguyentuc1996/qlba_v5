@@ -19,6 +19,7 @@
 	href="${pageContext.request.contextPath}/resources/css/modal.css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/doctor.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/footer.css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/chat-advice.css">
 <script
@@ -44,8 +45,8 @@
 			</div>
 			<div class="navbar-collapse collapse navbar-right">
 				<ul class="nav navbar-nav">
-                    <li class="active"><a href="<%=request.getContextPath()%>/bacsi/home_bac_si">Trang chủ</a></li>
-                    <li ><a href="<%=request.getContextPath()%>/bacsi/trang_chu?action=BA">Bệnh án</a></li>
+                    <li ><a href="<%=request.getContextPath()%>/bacsi/home_bac_si">Trang chủ</a></li>
+                    <li class="active"><a href="<%=request.getContextPath()%>/bacsi/trang_chu?action=BA">Bệnh án</a></li>
                     <li ><a href="<%=request.getContextPath()%>/bacsi/trang_chu?action=QLCC">Quản lý chứng chỉ</a></li>
                     <li><a href="<%=request.getContextPath()%>/tuvan">Tư vấn sức khỏe</a></li>
                     <li class="username dropdown">
@@ -68,32 +69,21 @@
 					<h2>Thêm bệnh án</h2>
 				</div>
 				<div class="modal-body">
-					<div class="tab">
-						<button class="tablinks" onclick="openTab(event, 'benhAn')"
-							id="defaultOpen">Bệnh án</button>
-						<button class="tablinks" onclick="openTab(event, 'chanDoan')">Chẩn
-							đoán bệnh</button>
-						<button class="tablinks" onclick="openTab(event, 'phapDo')">Phác
-							đồ điều trị</button>
-					</div>
-
-					<div id="benhAn" class="tabcontent">
-						<form action="<%=request.getContextPath()%>/bacsi/them_benh_an"
-							method="POST" class="form" role="form">
+					<form action="<%=request.getContextPath()%>/bacsi/them_benh_an" method="POST" class="form" role="form">
 							<div class="row">
 
 								<div class="col-xs-6 col-md-6">
 									<label>Mã bệnh nhân:</label> <select class="form-control"
-										name="maBenhNhan">
-										<%
-											ArrayList<BenhNhan> dsBN= (ArrayList<BenhNhan>) request.getAttribute("danhSachBenhNhan");
-											if(dsBN != null){
-												for(BenhNhan benhNhan:dsBN){	
-											
-										%>
-									                <option value="<%=benhNhan.getMaBenhNhan()%>">BN:<%=benhNhan.getMaBenhNhan()%> - <%=benhNhan.getHoTen() %></option>
-									     <%}} %>
-									     </select>
+ 										name="maBenhNhan">
+ 										<%
+ 										ArrayList<BenhNhan> dsBN= (ArrayList<BenhNhan>) request.getAttribute("danhSachBenhNhan");
+ 											if(dsBN != null){
+ 												for(BenhNhan benhNhan:dsBN){	
+ 											
+ 										%>
+ 									                <option value="<%=benhNhan.getMaBenhNhan()%>">BN:<%=benhNhan.getMaBenhNhan()%> - <%=benhNhan.getHoTen() %></option>
+ 									     <%}} %>
+ 									     </select>
 								</div>
 							</div>
 							<div class="row">
@@ -147,100 +137,7 @@
 								bệnh án</button>
 
 						</form>
-					</div>
-
-					<div id="chanDoan" class="tabcontent">
-						<form
-							action="${pageContext.request.contextPath}/bacsi/viet_chan_doan"
-							method="POST" class="form" role="form">
-							<div class="row">
-								<div class="col-xs-6 col-md-6">
-									<label>Bệnh án:</label>
-									<%
-										ArrayList<BenhAn> danhSachBenhAn = (ArrayList<BenhAn>) request.getAttribute("danhSachBenhAn");
-									%>
-									<select class="form-control" name="maBenhAn">
-										<%
-											if (danhSachBenhAn != null) {
-												for (BenhAn benhAn : danhSachBenhAn) {
-										%>
-										<option value="<%=benhAn.getMaBenhAn()%>">Mã BA:
-											<%=benhAn.getMaBenhAn()%></option>
-										<%
-											}
-											}
-										%>
-									</select>
-								</div>
-								<div class="col-xs-6 col-md-6">
-									<label>Ngày chẩn đoán:</label> <input class="form-control"
-										name="ngayChanDoan" placeholder="Ngày chẩn đoán" type="date"
-										required />
-								</div>
-							</div>
-							<label>Bệnh chính</label>
-							<textarea class="form-control" name="benhChinh"
-								placeholder="Bệnh chính"></textarea>
-							<label>Bệnh kèm theo</label>
-							<textarea class="form-control" name="benhKemTheo"
-								placeholder="Bệnh kèm theo"></textarea>
-							<button class="button button-block" type="submit">Viết
-								chẩn đoán</button>
-
-						</form>
-					</div>
-
-					<div id="phapDo" class="tabcontent">
-						<form
-							action="${pageContext.request.contextPath}/bacsi/viet_phac_do"
-							method="POST" class="form" role="form">
-							<div class="row">
-								<div class="col-xs-6 col-md-6">
-									<label>Bệnh án:</label>
-									<%
-										//                                         ArrayList<BenhAn> danhSachBenhAn = (ArrayList<BenhAn>) request.getAttribute("danhSachBenhAn");
-									%>
-									<select class="form-control" name="maBenhAn">
-										<%
-											if (danhSachBenhAn != null) {
-												for (BenhAn benhAn : danhSachBenhAn) {
-										%>
-										<option value="<%=benhAn.getMaBenhAn()%>">Mã BA:
-											<%=benhAn.getMaBenhAn()%></option>
-										<%
-											}
-											}
-										%>
-									</select>
-								</div>
-								<div class="col-xs-6 col-md-6">
-									<label>Thời gian:</label> <input class="form-control"
-										name="thoiGian" placeholder="Ngày chẩn đoán" type="date"
-										required />
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-xs-6 col-md-6">
-									<label>Tiêu đề:</label> <input class="form-control"
-										name="tieuDe" placeholder="Tiêu đề" type="text">
-								</div>
-								<div class="col-xs-6 col-md-6">
-									<label>Ngày tạo:</label> <input class="form-control"
-										name="ngayTao" placeholder="Ngày tạo phác đồ" type="date"
-										required />
-								</div>
-							</div>
-							<label>Nội dung:</label>
-							<textarea class="form-control" name="noiDung"
-								placeholder="Nội dung phác đồ"></textarea>
-							</br>
-							<button class="button button-block" type="submit">Tạo
-								phác đồ điều trị</button>
-
-						</form>
-					</div>
-
-
+					
 				</div>
 				<div class="modal-footer"></div>
 			</div>
@@ -341,6 +238,38 @@
 			</div>
 		</div>
 	</div>
+	<div id="footerwrap">
+	 	<div class="container">
+		 	<div class="row">
+		 		<div class="col-lg-4">
+		 			<h4>Về chúng tôi</h4>
+		 			<div class="hline-w"></div>
+		 			<p>Trang web quản lý bệnh án điện tử - Đề tài Project 3 đồ án Hệ thống thông tin</p>
+		 		</div>
+		 		<div class="col-lg-4">
+		 			<h4>Liên lạc</h4>
+		 			<div class="hline-w"></div>
+		 			<p>
+		 				<a href="#"><i class="fa fa-dribbble"></i></a>
+		 				<a href="#"><i class="fa fa-facebook"></i></a>
+		 				<a href="#"><i class="fa fa-twitter"></i></a>
+		 				<a href="#"><i class="fa fa-instagram"></i></a>
+		 				<a href="#"><i class="fa fa-tumblr"></i></a>
+		 			</p>
+		 		</div>
+		 		<div class="col-lg-4">
+		 			<h4>Địa chỉ</h4>
+		 			<div class="hline-w"></div>
+		 			<p>
+		 				Số 1<br/>
+		 				Đại Cồ Việt, Hà Nội<br/>
+		 				Đại học Bách Khoa Hà Nội<br/>
+		 			</p>
+		 		</div>
+		 	
+		 	</div>
+	 	</div>
+	 </div>
 	<script
 		src="${pageContext.request.contextPath}/resources/js/modal-add.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/search.js"></script>

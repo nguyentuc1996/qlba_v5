@@ -15,6 +15,7 @@
 	href="${pageContext.request.contextPath}/resources/css/modal.css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/admin.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/footer.css">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script
@@ -78,7 +79,7 @@
 		<div id="qlba-modal" class="modal">
 			<div class="modal-content">
 				<div class="modal-header">
-					<span class="close">&times;</span>
+					<span class="close" id="close-add">&times;</span>
 					<h2>Thêm lĩnh vực khám bệnh</h2>
 				</div>
 				<div class="modal-body">
@@ -233,7 +234,38 @@
 			</div>
 		</div>
 	</div>
-
+	<div id="footerwrap">
+	 	<div class="container">
+		 	<div class="row">
+		 		<div class="col-lg-4">
+		 			<h4>Về chúng tôi</h4>
+		 			<div class="hline-w"></div>
+		 			<p>Trang web quản lý bệnh án điện tử - Đề tài Project 3 đồ án Hệ thống thông tin</p>
+		 		</div>
+		 		<div class="col-lg-4">
+		 			<h4>Liên lạc</h4>
+		 			<div class="hline-w"></div>
+		 			<p>
+		 				<a href="#"><i class="fa fa-dribbble"></i></a>
+		 				<a href="#"><i class="fa fa-facebook"></i></a>
+		 				<a href="#"><i class="fa fa-twitter"></i></a>
+		 				<a href="#"><i class="fa fa-instagram"></i></a>
+		 				<a href="#"><i class="fa fa-tumblr"></i></a>
+		 			</p>
+		 		</div>
+		 		<div class="col-lg-4">
+		 			<h4>Địa chỉ</h4>
+		 			<div class="hline-w"></div>
+		 			<p>
+		 				Số 1<br/>
+		 				Đại Cồ Việt, Hà Nội<br/>
+		 				Đại học Bách Khoa Hà Nội<br/>
+		 			</p>
+		 		</div>
+		 	
+		 	</div>
+	 	</div>
+	 </div>
 	<script
 		src="${pageContext.request.contextPath}/resources/js/modal-add.js"></script>
 	<script
