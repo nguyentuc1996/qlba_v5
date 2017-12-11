@@ -32,6 +32,7 @@ import com.p3.qlba.entities.ChanDoan;
 import com.p3.qlba.entities.ChungChi;
 import com.p3.qlba.entities.LinhVucKhamChua;
 import com.p3.qlba.entities.PhacDoDieuTri;
+import com.p3.qlba.tool.GuiMail;
 
 @Controller
 @RequestMapping(value = "/bacsi")
@@ -331,12 +332,12 @@ public class BacSiController {
 			phacDoDieuTri.setNgayTao(new Date());
 			phacDoDieuTri.setNhacNho(0);
 			int result = phacDoDieuTriDAO.themPhacDoDieuTri(phacDoDieuTri);
+			BenhAn benhAn= benhAnDAO.layThongTinBenhAn(Integer.parseInt(maBenhAn));
+			BenhNhan benhNhan= benhNhanDAO.layThongTinBenhNhan(benhAn.getMaBenhNhan());
+			GuiMail.sendMail(benhNhan.getEmail(), tieuDe, noiDung);
 			HttpSession session = request.getSession(false);
-			if (result == 0) {
-				session.setAttribute("them_xoa_sua", "thanhcong");
-			} else {
-				session.setAttribute("them_xoa_sua", "thatbai");
-			}
+			// gui alert 
+			mm.put("result","Thành công !");
 			response.sendRedirect(request.getContextPath() + "/bacsi/lay_thong_tin_benh_an?id="+phacDoDieuTri.getMaBenhAn());
 		}
 
