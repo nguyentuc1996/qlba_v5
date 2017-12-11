@@ -66,16 +66,24 @@
 			<!--/.nav-collapse -->
 		</div>
 	</header>
-	<%
-		out.print("\n\n=============\n===========");
-		out.println(session.getAttribute("them_xoa_sua"));
-		session.removeAttribute("message");
-	%>
-
-	<c:out value="${sessionScope.message}" />
-	<c:remove var="message" scope="session" />
 
 	<div class="container mtb">
+	<!-- 	Thêm chỗ này vào tất cả cái trang khác -->
+		<div class="row" style="text-align:center;color:#00BCD4;">
+			<h4>
+			<% 
+			if (session.getAttribute("them_xoa_sua")!=null){
+				out.println(session.getAttribute("them_xoa_sua").equals("thanhcong")?"Tác vụ được thực hiện thành công":"Tác vụ thất bại");
+			}
+			session.removeAttribute("them_xoa_sua");
+			%>
+			</h4>
+		</div>
+	
+    
+		<c:out value="${sessionScope.them_xoa_sua}" />
+		<c:remove var="them_xoa_sua" scope="session" />
+<!-- 	Thêm chỗ này vào tất cả cái trang khác -->
 		<div id="qlba-modal" class="modal">
 			<div class="modal-content">
 				<div class="modal-header">
