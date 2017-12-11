@@ -429,6 +429,10 @@ public class BacSiController {
 			phacDoDieuTri.setThoiGian(thoiGianD);
 			phacDoDieuTri.setNoiDung(noiDung);
 			int result = phacDoDieuTriDAO.suaPhacDoDieuTri(phacDoDieuTri);
+			
+			BenhAn benhAn= benhAnDAO.layThongTinBenhAn(phacDoDieuTri.getMaBenhAn());
+			BenhNhan benhNhan= benhNhanDAO.layThongTinBenhNhan(benhAn.getMaBenhNhan());
+			GuiMail.sendMail(benhNhan.getEmail(), "Thông báo cập nhật:"+tieuDe, noiDung);
 			HttpSession session = request.getSession(false);
 			if (result == 0) {
 				session.setAttribute("them_xoa_sua", "thanhcong");
