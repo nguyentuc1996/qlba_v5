@@ -83,11 +83,17 @@
 							<div class="row">
 
 								<div class="col-xs-6 col-md-6">
-									<label>Mã bệnh nhân:</label> <input class="form-control"
-										name="maBenhNhan" value="">
-									<!--                                         <option value="1">hongtt</option> -->
-									<!--                                         <option value="2">tucnguyen</option> -->
-									<!--                                     </select> -->
+									<label>Mã bệnh nhân:</label> <select class="form-control"
+										name="maBenhNhan">
+										<%
+											ArrayList<BenhNhan> dsBN= (ArrayList<BenhNhan>) request.getAttribute("danhSachBenhNhan");
+											if(dsBN != null){
+												for(BenhNhan benhNhan:dsBN){	
+											
+										%>
+									                <option value="<%=benhNhan.getMaBenhNhan()%>">BN:<%=benhNhan.getMaBenhNhan()%> - <%=benhNhan.getHoTen() %></option>
+									     <%}} %>
+									     </select>
 								</div>
 							</div>
 							<div class="row">

@@ -85,10 +85,11 @@ public class BacSiController {
 				HttpSession session = request.getSession();
 				BacSi bacSi = (BacSi) session.getAttribute("bs");
 				ArrayList<LinhVucKhamChua> linhVucKhamChua = linhVucKhamChuaDAO.layDanhSachLinhVucKhamChua();
-
+				ArrayList<BenhNhan> danhSachBenhNhan= benhNhanDAO.layDanhSachBenhNhan();
 				ArrayList<BenhAn> danhSachBenhAn = benhAnDAO.layDanhSachBenhAnTheoBacSi(bacSi.getMaBacSi());
 				mm.put("linhVucKhamChua", linhVucKhamChua);
 				mm.put("danhSachBenhAn", danhSachBenhAn);
+				mm.put("danhSachBenhNhan", danhSachBenhNhan);
 			}
 			return "bacsi/quan_ly_benh_an";
 
